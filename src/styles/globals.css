@@ -183,4 +183,52 @@ main {
   background-color: rgba(250, 235, 215, 0.048);
   text-align: center;
 }
+.reachOut{
+  padding: 10px 0;
+  border-top: 2px dotted grey;
+}
+.reachOut button{
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: green;
+  
+}
+/* Sign Up page */
+.signUp{
+  color: white;
+  /* border: 2px solid red; */
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.signUpSect{
+  border: 1px solid rgba(0, 0, 255, 0.39);
+  width: 35vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 5px 0.8px 7px ;
+}
+.signUpSect label{
+  font-size: x-large;
+  padding: 5px 0;
+}
+.signUpSect input{
+  border-radius: 5px;
+  height: 3rem;
+  margin: 10px 0;
+  text-align: center;
+
+}
+.signUpSect button{
+  border-radius: 10px;
+  padding: 5px;
+  margin: 3px;
+}
 /* Footer Section  */
