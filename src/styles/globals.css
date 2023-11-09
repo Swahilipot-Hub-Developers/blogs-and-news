@@ -4,6 +4,9 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  
 }
 
 a {
@@ -24,3 +27,160 @@ a {
     background: black;
   }
 }
+
+main {
+  min-height: 75vh;
+  border: 1px solid rgba(0, 0, 255, 0);
+}
+.home{
+  margin-top: 9vh;
+}
+     
+/* Header Section  */
+.headerSect{
+  display: flex;
+  padding: 5px 0;
+  background: linear-gradient(to right, #1c2035ec, #004e92);
+  border-radius: 0 0 20px 20px;
+  width: 100%;
+  position: fixed;
+  z-index: 99;
+}
+.leftHeader{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.leftHeader h1{
+  background-color: lightblue;
+  width: fit-content;
+  padding: 0 5px;
+  border-radius: 10px;
+}
+.rightHeader{
+  flex: 2;
+  display: flex;
+  padding: 0 20px;
+  align-items: center;
+  font-weight: bold;
+  justify-content: flex-end;
+}
+/* Hero section */
+.heroSect{
+  min-height: 70vh;
+  border-bottom: 3px dashed gray;
+  border-radius: 0 0 40% 0;
+  background-image: url("/images/hero.jpg");
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: #03adf0af; */
+  opacity: 0.5;
+
+}
+.heroText{
+ font-size: xx-large;
+ font-weight: bolder;
+}
+
+/* Home Article section */
+.articleSection{
+  padding: 10px 0;
+}
+.categoriesPill{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 10vh;
+  padding: 0 10px;
+  border-radius: 0 30px 0 30px;
+  background-color: rgba(119, 105, 105, 0.507);
+}
+
+/* ArticleCardSection  and card Item */
+/* .articleCardSection{
+  /* border: 1px solid red; */
+/* }  */
+.grid{
+  /* border: 1px solid blue; */
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  
+
+}
+.gridCard{
+  /* border: 1px solid yellow; */
+  width: 15rem;
+  height: 19rem;
+  border-radius: 10px;
+  box-shadow: 2px 1px 5px;
+  margin: 10px;
+}
+.topCard{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  
+}
+.topCard img{
+  width: 230px;
+  object-fit: cover;
+}
+.topCard h3{
+  position: absolute;
+  padding: 10px;
+
+}
+.lowerCard p{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  font-size: small;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  padding: 1px;
+}
+.lowerCard button{
+  background-color: rgb(129, 129, 155);
+  color: black;
+  border-radius: 5px;
+  margin: 1px;
+}
+.socials{
+  display: flex;
+  margin-top: 3px;
+  height: 30px;
+  
+}
+.socialLeft{
+  flex: 1;
+  /* border: 1px solid red; */
+  margin-bottom: 0;
+  
+
+}
+.socialIcons{
+  flex:2;
+  /* border: 1px solid blue; */
+}
+
+/* Search section */
+.searchSect{
+  /* border: 1px solid red; */
+  padding:10px;
+
+}
+.searchSect input{
+  border-radius: 10px;
+  background-color: rgba(250, 235, 215, 0.048);
+  text-align: center;
+}
+/* Footer Section  */
