@@ -293,4 +293,10 @@ def category_detail(request,id, format=None):
     else:
         return Response({'detail': 'Permission denied'}, status=status.HTTP_403_FORBIDDEN)
 
+# writers section 
 
+@api_view(['GET'])
+def get_writers(request):
+    writers = UserProfile.objects.filter(role='writer')
+    serializer = UserProfileSerializer(writers, many=True)
+    return Response(serializer.data)

@@ -42,7 +42,9 @@ urlpatterns = [
     path('articles/share/<int:article_id>/', views.share_article, name='share-article'),
     # Category paths
     path('categories/', views.category_list),
-    path('categories/<int:id>', views.category_detail)
+    path('categories/<int:id>', views.category_detail),
+    # writers
+     path('writers/', views.get_writers, name='get_writers'),
 ]
 
 
