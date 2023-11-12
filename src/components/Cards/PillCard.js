@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-const PillCard = ({text}) => {
+const PillCard = ({ text, onClick }) => {
   return (
-    <a className="btn btn-primary" style={{borderRadius:23}} href="#">{text}</a>
-  )
-}
+    // On click filter the data and feedback data by category 
+    <button className="btn btn-primary" style={{ borderRadius: 23 }} onClick={() => onClick(text)}>
+      {text}
+    </button>
+  );
+};
 
-export default PillCard
+export default PillCard;

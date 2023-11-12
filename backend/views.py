@@ -103,6 +103,7 @@ def user_profile_list(request):
 @api_view(['POST'])
 def signup(request):
     try:
+        print('Signup Request Data:', request.data)
         # Deserialize user and profile data from the request
         user_serializer = UserSerializer(data=request.data)
         profile_serializer = UserProfileSerializer(data=request.data)
@@ -213,7 +214,7 @@ def published_articles(request, format=None):
 
     serializer = ArticleSerializer(articles, many= True)
 
-    return Response({'article': serializer.data})
+    return Response({'articles': serializer.data})
 
 
 # View to count article views
@@ -257,6 +258,7 @@ def category_list(request, format=None):
         categories = Category.objects.all()
         serializer = CategorySerializer(categories,many=True)
         return Response({"categories":serializer.data})
+    # Admin will be doing this part
     if request.method == 'POST':
         serializer = CategorySerializer(data=request.data)
         if serializer.is_valid():
@@ -278,20 +280,20 @@ def category_detail(request,id, format=None):
     
     user_profile = UserProfile.objects.get(user =request.user)
 
-    if user_profile.role == 'admin':
-
-        if request.method == 'PUT':
-            serializer = CategorySerializer(category, data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data)
-            return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
-        
-        elif request.method == 'DELETE':
-            category.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-    else:
-        return Response({'detail': 'Permission denied'}, status=status.HTTP_403_FORBIDDEN)
+    # if user_profile.role == 'admin':
+    # Will be done in admin panel
+    if request.method == 'PUT':
+        serializer = CategorySerializer(category, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        category.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    # else:
+    #     return Response({'detail': 'Permission denied'}, status=status.HTTP_403_FORBIDDEN)
 
 # writers section 
 

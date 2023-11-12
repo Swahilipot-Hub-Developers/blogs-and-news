@@ -28,7 +28,7 @@ const Footer = () => {
                       className='btn btn-icon btn-sm btn-ghost-secondary rounded-circle border border-danger'
                       href='https://twitter.com/swahilipothub'
                       >
-                      <i class="bi bi-twitter-x"></i>
+                      <i className="bi bi-twitter-x"></i>
                     </a>
                   </li>
     

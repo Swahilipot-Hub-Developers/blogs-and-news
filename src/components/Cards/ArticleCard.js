@@ -1,17 +1,21 @@
 import React from 'react'
+import Link from 'next/link';
 
-const ArticleCard = () => {
+
+const ArticleCard = ({...article}) => {
+    console.log(article)
+    const {title ,content} = article
   return (
     <div className='gridCard'>
         <div className='topCard'>
             <img src='images/hero.jpg'  />
-            <h3>Article Title</h3>
+            <h3>{title}</h3>
         </div>
         <div className='lowerCard'>
-            <p>The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,
-            The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,The content of a lifetime,
-            </p>
-            <button>READ MORE</button>
+            <p>{content}</p>
+            <Link href={`/articles/${article.id}`}>
+                <button>READ MORE</button>
+            </Link>
         </div>
         <div className='socials'>
             <div className='socialLeft'>
