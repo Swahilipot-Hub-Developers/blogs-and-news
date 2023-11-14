@@ -1,8 +1,15 @@
+import ArticleSection from "../components/home/ArticleSection";
+import Hero from "../components/home/Hero";
+
 export default function Home() {
   return (
-    <div>
-      <p className="text-right"> Welcome to Our  Blog Website</p>
-      <p className='text-center'>Blogs and News</p>
+    <>
+    <div className="home">
+
+      <Hero />
+      <ArticleSection/>
+      
     </div>
+    </>
   )
 }

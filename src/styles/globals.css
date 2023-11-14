@@ -4,6 +4,9 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  
 }
 
 a {
@@ -24,3 +27,321 @@ a {
     background: black;
   }
 }
+
+main {
+  min-height: 75vh;
+  border: 1px solid rgba(0, 0, 255, 0);
+}
+.home{
+  margin-top: 9.3vh;
+}
+     
+/* Header Section  */
+.headerSect{
+  display: flex;
+  padding: 5px 0;
+  background: linear-gradient(to right, #1c2035ec, #004e92);
+  border-radius: 0 0 20px 20px;
+  width: 100%;
+  position: fixed;
+  z-index: 99;
+}
+.leftHeader{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.leftHeader h1{
+  background-color: lightblue;
+  width: fit-content;
+  padding: 0 5px;
+  border-radius: 10px;
+}
+.rightHeader{
+  flex: 2;
+  display: flex;
+  padding: 0 20px;
+  align-items: center;
+  font-weight: bold;
+  justify-content: flex-end;
+}
+/* Hero section */
+.heroSect{
+  min-height: 70vh;
+  border-bottom: 3px dashed gray;
+  border-radius: 0 0 40% 0;
+  background-image: url("/images/hero.jpg");
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: #03adf0af; */
+  opacity: 0.5;
+
+}
+.heroText{
+ font-size: xx-large;
+ font-weight: bolder;
+}
+
+/* Home Article section */
+.articleSection{
+  padding: 10px 0;
+}
+.categoriesPill{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 10vh;
+  padding: 0 10px;
+  border-radius: 0 30px 0 30px;
+  background-color: rgba(119, 105, 105, 0.507);
+}
+
+/* ArticleCardSection  and card Item */
+/* .articleCardSection{
+  /* border: 1px solid red; */
+/* }  */
+.grid{
+  /* border: 1px solid blue; */
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  
+
+}
+.gridCard{
+  /* border: 1px solid yellow; */
+  width: 15rem;
+  height: 19rem;
+  border-radius: 10px;
+  box-shadow: 2px 1px 5px;
+  margin: 10px;
+}
+.topCard{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  
+}
+.topCard img{
+  width: 230px;
+  object-fit: cover;
+}
+.topCard h3{
+  position: absolute;
+  padding: 10px;
+
+}
+.lowerCard p{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  font-size: small;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  padding: 1px;
+}
+.lowerCard button{
+  background-color: rgb(129, 129, 155);
+  color: black;
+  border-radius: 5px;
+  margin: 1px;
+}
+.socials{
+  display: flex;
+  margin-top: 3px;
+  height: 30px;
+  
+}
+.socialLeft{
+  flex: 1;
+  /* border: 1px solid red; */
+  margin-bottom: 0;
+  
+
+}
+.socialIcons{
+  flex:2;
+  /* border: 1px solid blue; */
+}
+
+/* Search section */
+.searchSect{
+  /* border: 1px solid red; */
+  padding:10px;
+
+}
+.searchSect input{
+  border-radius: 10px;
+  background-color: rgba(250, 235, 215, 0.048);
+  text-align: center;
+}
+.reachOut{
+  padding: 10px 0;
+  border-top: 2px dotted grey;
+}
+.reachOut button{
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: green;
+  
+}
+/* Sign Up page */
+.signUp{
+  color: white;
+  /* border: 2px solid red; */
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.signUpSect{
+  border: 1px solid rgba(0, 0, 255, 0.39);
+  width: 35vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 5px 0.8px 7px ;
+}
+.signUpSect label{
+  font-size: x-large;
+  padding: 5px 0;
+}
+.signUpSect input{
+  border-radius: 5px;
+  height: 3rem;
+  margin: 10px 0;
+  text-align: center;
+
+}
+.signUpSect button{
+  border-radius: 10px;
+  padding: 5px;
+  margin: 3px;
+}
+
+/* Sidepane */
+
+.sideNav{
+
+  border-right: 3px dotted rgb(156, 146, 146);
+  box-shadow: 2px 2px 5px ;
+  background-color: rgb(102, 46, 46);
+  flex: 1;
+  /* text-align: center; */
+
+
+}
+.sideNav nav ul{
+  text-decoration: none;
+  /* border: 2px solid blue; */
+  margin: 10px 0;
+  padding: 0;
+  list-style-type: none;
+
+
+}
+.sideNav nav ul li {
+  text-align: center;
+  padding: 10px;
+  margin: 7px 0;
+  list-style-type: none;
+  /* width: 190px; */
+  margin-left: 0;
+  border-bottom: 2px solid rgb(108, 184, 130);
+  border-radius: 10px;
+  cursor: pointer;
+
+}
+/* Update Profile */
+.childrenMain{
+  color: white;
+  /* border: 2px solid red; */
+  flex: 5;
+  /* min-height: 80vh; */
+  
+}
+.updateProfile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.updateProfile  label{
+  font-size: x-large;
+  padding: 5px ;
+  margin: 5px 0;
+  width: 50vh;
+}
+.updateProfile  input{
+  border-radius: 5px;
+  height: 3rem;
+  margin: 10px 0;
+  text-align: center;
+
+}
+.updateProfile  .buttonSect{
+  /* border: 2px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+
+}
+.updateProfile  button{
+  border-radius: 10px;
+  padding: 5px;
+  border: 2px solid rgba(153, 142, 142, 0.274);
+  box-shadow: 2px 2px 7px;
+  cursor: pointer;
+  margin: 3px;
+}
+/* createArticle */
+.createArticle{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.createArticle  label{
+  font-size: x-large;
+  padding: 5px ;
+  margin: 5px 0;
+  width: 50vh;
+}
+.createArticle  input{
+  border-radius: 5px;
+  height: 3rem;
+  margin: 10px 0;
+  text-align: center;
+
+}
+.createArticle  .buttonSect{
+  /* border: 2px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+
+}
+.createArticle  button{
+  border-radius: 10px;
+  padding: 5px;
+  border: 2px solid rgba(153, 142, 142, 0.274);
+  box-shadow: 2px 2px 7px;
+  cursor: pointer;
+  margin: 3px;
+}
+/* Footer Section  */

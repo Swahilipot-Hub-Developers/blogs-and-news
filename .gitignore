@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 
+/blogs-and-news
 # testing
 /coverage
 
