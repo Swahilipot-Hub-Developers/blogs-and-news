@@ -9,9 +9,12 @@ const CreateArticle = ({username}) => {
   const [content, setContent] = useState('');
   const [categoryOptions, setCategoryOptions] = useState([]);
   const [writerOptions, setWriterOptions] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedWriter, setSelectedWriter] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(0);
+  const [selectedWriter, setSelectedWriter] = useState(0);
 
+
+  // console.log(writerOptions)
+  // console.log(categoryOptions)
   useEffect(() => {
     // Fetch available categories and writers when the component mounts
     const fetchData = async () => {
@@ -48,15 +51,18 @@ const CreateArticle = ({username}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const dataTake = {
+      title: title,
+      content: content,
+      category: parseInt(selectedCategory),
+      writer: parseInt(selectedWriter),
+      // Play test selected writer to 2
+      // Include other fields as needed
+    }
+    console.log(dataTake)
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/articles/', {
-        title,
-        content,
-        category: selectedCategory,
-        writer: selectedWriter,
-        // Include other fields as needed
-      });
+      const response = await axios.post('http://127.0.0.1:8000/articles/',dataTake);
 
       console.log('Article created successfully:', response.data);
       // Handle success, redirect, or perform other actions
@@ -70,7 +76,6 @@ const CreateArticle = ({username}) => {
     <Layout username={username}>
     <div className='createArticle'>
       <h1>Create Article</h1>
-      <form onSubmit={handleSubmit}>
         <label>
           Title:
           <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -106,12 +111,13 @@ const CreateArticle = ({username}) => {
         </label>
         <br />
         <div className='buttonSect'>
-          <button type="submit">Create Article</button>
+          <button type="button" onClick={handleSubmit}>Create Article</button>
         </div>
-      </form>
+  
     </div>
     </Layout>
   );
 };
 
 export default CreateArticle;
+

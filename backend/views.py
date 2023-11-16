@@ -152,10 +152,28 @@ def article_list(request, format=True):
         return Response({"articles": serializer.data})
     # Implement validation where only the user/writer can post
     if request.method == 'POST':
-        serializer =ArticleSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
+        data = request.data
+        title = data.get('title')
+        content = data.get('content')
+        category = data.get('category')
+        category_instance = Category.objects.get(pk=category)  #here we are creating an instance of the category eg: 2
+        writer = data.get('writer')
+        writer_instance = UserProfile.objects.get(pk=writer)
+        print(request.data.get('category'))
+        if title and content and category and writer:
+            article = Article.objects.create(
+                title=title,
+                content=content,
+                category=category_instance,
+                writer=writer_instance
+                # Add other fields as needed
+            )
+            return Response({'message': 'Article created successfully'})
+        else:
+            return Response({'error': 'Incomplete data provided'}, status=400)
+    else:
+        return Response({'error': 'Method not allowed'}, status=405)
+
 @api_view(['GET', 'PUT', 'DELETE'])
 def article_detail(request,id, format=None ):
     try:

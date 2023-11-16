@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 
 const ArticleCard = ({...article}) => {
-    console.log(article)
+    // console.log(article)
     const {title ,content} = article
   return (
     <div className='gridCard'>
