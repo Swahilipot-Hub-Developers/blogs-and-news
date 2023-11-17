@@ -6,17 +6,140 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   scroll-behavior: smooth;
   scrollbar-width: none;
+  background: #f6f6f6;
+
   
 }
+/* Start of filter */
+header{
+  background:#1060B0;
+  height: 66px;
+}
+*{
+  box-sizing: border-box;
+}
+header .logo{
+  float: left;
+  height: inherit;
+  margin-left: 2em;
+}
+header .logo-text{
+  margin: 9px;
+  font-family: 'candal'serif;
+}
+header .logo-text span{
+  color: rgb(235, 69, 9);
+}
+header *{
+  color:white;
+}
+header ul{
+  float: right;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+header ul li{
+  float: left;
+  position: relative;
+}
+header ul li ul{
+position: absolute;
+top: 66px;
+right: 0px;
+width: 180px;
+display: none;
+}
+header ul li:hover ul{
+  display: block;
+}
+header ul li ul li{
+  width: 100%;
+}
+header ul li ul li a{
+  padding: 10px;
+  background:white;
+  color: #444;
+}
+header ul li ul li a.logout{
+  color: red;
+}
+header ul li ul li a:hover{
+  background: #b8babb;
+}
 
+header ul li a{
+  display: block;
+  padding: 21px;
+  font-size: 1.1em;
+  text-decoration: none;
+}
+header ul li a:hover{
+  background: #032e58;
+  transition: 0.5s;
+}
+
+header.menu-toggle{
+  display: none;
+}
+.post-filter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1.5rem;
+  margin-top: 2rem !important;
+}
+.filter-item{
+  font-size: 0.9rem;
+  padding: 3px 10px;
+  margin: 0 20px;
+  min-width: 70px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.active-filter{
+  background: orangered;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+.post{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px,auto));
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.home{
+  width: 100%;
+  min-height: 440px;
+  background: rgb(59, 59, 59);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+
+}
+.home-text{
+  color: white;
+  text-align: center;
+}
+.home-title{
+  font-size: 3.5rem;
+}
+.home-subtitle{
+  font-size: 1rem;
+  font-weight: 400;
+}
+.post-box{
+  background-image: url("../../public/images/technology.jpeg")
+}
+
+/* End of filter */
 a {
   color: inherit;
   text-decoration: none;
 }
-
-* {
-  box-sizing: border-box;
-}
+ 
 
 @media (prefers-color-scheme: dark) {
   html {
@@ -27,16 +150,14 @@ a {
     background: black;
   }
 }
-
+/* 
 main {
   min-height: 75vh;
   border: 1px solid rgba(0, 0, 255, 0);
-}
-.home{
-  margin-top: 9.3vh;
-}
+} */
+
      
-/* Header Section  */
+/* Header Section 
 .headerSect{
   display: flex;
   padding: 5px 0;
@@ -66,9 +187,9 @@ main {
   align-items: center;
   font-weight: bold;
   justify-content: flex-end;
-}
+} */
 /* Hero section */
-.heroSect{
+/* .heroSect{
   min-height: 70vh;
   border-bottom: 3px dashed gray;
   border-radius: 0 0 40% 0;
@@ -77,28 +198,24 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background: #03adf0af; */
+  background: #03adf0af;
   opacity: 0.5;
 
 }
 .heroText{
  font-size: xx-large;
  font-weight: bolder;
-}
+} */
 
 /* Home Article section */
 .articleSection{
   padding: 10px 0;
 }
 .categoriesPill{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  min-height: 10vh;
-  padding: 0 10px;
-  border-radius: 0 30px 0 30px;
-  background-color: rgba(119, 105, 105, 0.507);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  flex-direction: row-reverse;
 }
 
 /* ArticleCardSection  and card Item */

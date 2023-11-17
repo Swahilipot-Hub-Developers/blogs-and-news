@@ -10,6 +10,7 @@ const ArticleSection = () => {
   const [articles, setArticles] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [activeFilter, setActiveFilter] = useState('All')
 
   const fetchArticles = async (condition) => {
     try {
@@ -51,6 +52,7 @@ const ArticleSection = () => {
   }, [selectedCategory, searchTerm]);
 
   const handleCategoryClick = (category) => {
+    setActiveFilter(category.name)
     setSelectedCategory(category);
     setSearchTerm('');
     fetchArticles('category');
@@ -67,7 +69,7 @@ const ArticleSection = () => {
       <p className='text-center fs-'>Blogs and News</p>
       <div className='categoriesPill'>
         {categoryOptions.map((category) => (
-          <PillCard key={category.id} text={category.name} onClick={() => handleCategoryClick(category)} />
+          <PillCard key={category.id} text={category.name} onClick={() => handleCategoryClick(category)} active={activeFilter == category.name} />
         ))}
       </div>
       <Search searchTerm={searchTerm} onSearch={handleSearch} onInputChange={(e) => setSearchTerm(e.target.value)} />
@@ -79,7 +81,7 @@ const ArticleSection = () => {
         </div>
       </div>
       <div className='reachOut'>
-        <p>If you believe that you have the Writers skill you can Signup/login to the program....... "Spread Awareness"</p>
+        <p>If you believe that you have the Writers skill you can Signup/login to the program....... Spread Awareness</p>
         <Link href='/signup'>
           <button>Reach Out</button>
         </Link>

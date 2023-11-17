@@ -57,17 +57,18 @@ def read_user_profile(request, username, format=None):
 @api_view(['PUT'])
 def update_user_profile(request, username):
     try:
-        user = get_object_or_404(User, username=username)
+        user = get_object_or_404(UserProfile, username=username)
         profile = user.userprofile
 
         if request.method == 'PUT':
-            serializer = UserProfileSerializer(profile, data=request.data, partial=True)
+            data =request.data
+            print(data)
 
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_200_OK)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            # if serializer.is_valid():
+            #     serializer.save()
+            #     return Response(serializer.data, status=status.HTTP_200_OK)
+            # else:
+            #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     except Exception as e:
         return Response(f"Error: {str(e)}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)@api_view(['PUT'])

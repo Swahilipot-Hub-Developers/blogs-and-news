@@ -2,11 +2,12 @@ import React from 'react'
 
 const Hero = () => {
   return (
-    <div className='heroSect'>
-        <div className='heroText'>
-            <p style={{fontWeight:"bold"}}>“I'm always reinventing my blog for the better.” </p>
-        </div>
-    </div>
+    <section class="home" id="Home" >
+      <div class="home-text container">
+        <h2 class="home-title">Swahilipot Blogs</h2>
+        <span class="home-subtitle">Your source of great content</span>
+      </div>
+    </section>
   )
 }
 
