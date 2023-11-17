@@ -57,17 +57,18 @@ def read_user_profile(request, username, format=None):
 @api_view(['PUT'])
 def update_user_profile(request, username):
     try:
-        user = get_object_or_404(User, username=username)
+        user = get_object_or_404(UserProfile, username=username)
         profile = user.userprofile
 
         if request.method == 'PUT':
-            serializer = UserProfileSerializer(profile, data=request.data, partial=True)
+            data =request.data
+            print(data)
 
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_200_OK)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            # if serializer.is_valid():
+            #     serializer.save()
+            #     return Response(serializer.data, status=status.HTTP_200_OK)
+            # else:
+            #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     except Exception as e:
         return Response(f"Error: {str(e)}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)@api_view(['PUT'])
@@ -152,10 +153,28 @@ def article_list(request, format=True):
         return Response({"articles": serializer.data})
     # Implement validation where only the user/writer can post
     if request.method == 'POST':
-        serializer =ArticleSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
+        data = request.data
+        title = data.get('title')
+        content = data.get('content')
+        category = data.get('category')
+        category_instance = Category.objects.get(pk=category)  #here we are creating an instance of the category eg: 2
+        writer = data.get('writer')
+        writer_instance = UserProfile.objects.get(pk=writer)
+        print(request.data.get('category'))
+        if title and content and category and writer:
+            article = Article.objects.create(
+                title=title,
+                content=content,
+                category=category_instance,
+                writer=writer_instance
+                # Add other fields as needed
+            )
+            return Response({'message': 'Article created successfully'})
+        else:
+            return Response({'error': 'Incomplete data provided'}, status=400)
+    else:
+        return Response({'error': 'Method not allowed'}, status=405)
+
 @api_view(['GET', 'PUT', 'DELETE'])
 def article_detail(request,id, format=None ):
     try:

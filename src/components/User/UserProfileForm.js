@@ -50,7 +50,7 @@ const UserProfileForm = ({ username }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <>
       <label>
         Role:
         <input type="text" value={role} onChange={(e) => setRole(e.target.value)} />
@@ -63,14 +63,14 @@ const UserProfileForm = ({ username }) => {
       <br />
       <div className='buttonSect'>
 
-      <button type="submit">Update Profile</button>
+      <button type="button" onClick={handleSubmit}>Update Profile</button>
       {username && (
         <button type="button" onClick={handleDelete} style={{ marginLeft: '10px', color: 'red' }}>
           Delete Profile
         </button>
       )}
       </div>
-    </form>
+    </>
   );
 };
 
