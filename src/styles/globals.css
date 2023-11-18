@@ -119,6 +119,7 @@ header.menu-toggle{
   align-items: center;
 
 }
+
 .home-text{
   color: white;
   text-align: center;
@@ -140,7 +141,20 @@ a {
   text-decoration: none;
 }
  
+.homel{
+  width: 100%;
+  min-height: 440px;
+  margin: 20px 0;
+  background: rgb(59, 59, 59);
+  display: grid;
+  justify-content: center;
+  align-items: center;
 
+}
+.homePoint{
+  /* border: 2px solid red; */
+
+}
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -216,6 +230,7 @@ main {
     align-items: center;
     justify-content: center;
   flex-direction: row-reverse;
+  margin: 10px 0;
 }
 
 /* ArticleCardSection  and card Item */
@@ -357,9 +372,8 @@ main {
   box-shadow: 2px 2px 5px ;
   background-color: rgb(102, 46, 46);
   flex: 1;
+  /* height: 100%; */
   /* text-align: center; */
-
-
 }
 .sideNav nav ul{
   text-decoration: none;

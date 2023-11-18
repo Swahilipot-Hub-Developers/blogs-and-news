@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const UserProfileForm = ({ username }) => {
-  const [role, setRole] = useState('');
+const UserProfileForm = ({ user }) => {
+  const [role, setRole] = useState('writer');
   const [bio, setBio] = useState('');
-
+  // console.log(role,bio)
   useEffect(() => {
     // Fetch existing user profile data for editing
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/read_user_profile/${username}`);
+        const response = await axios.get(`http://127.0.0.1:8000/read_user_profile/`);
         const userProfileData = response.data;
+        console.log(userProfileData)
         setRole(userProfileData.role);
         setBio(userProfileData.bio);
       } catch (error) {
@@ -18,10 +19,10 @@ const UserProfileForm = ({ username }) => {
       }
     };
 
-    if (username) {
+    if (user.username) {
       fetchUserProfile();
     }
-  }, [username]);
+  }, [user.username]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,6 +30,22 @@ const UserProfileForm = ({ username }) => {
     try {
       const formData = { username, role, bio };
       const response = await axios.put(`http://127.0.0.1:8000/update_user_profile/${username}`, formData);
+
+      console.log('User profile updated:', response.data);
+      // You can add a success message or redirect the user to another page
+    } catch (error) {
+      console.error('Error updating user profile:', error);
+      // Handle error, show a message, etc.
+    }
+  };
+
+  const handleCreateSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const formData = {user,role, bio};
+      console.log(formData)
+      const response = await axios.post(`http://127.0.0.1:8000/create_user_profile/`, formData);
 
       console.log('User profile updated:', response.data);
       // You can add a success message or redirect the user to another page
@@ -53,7 +70,7 @@ const UserProfileForm = ({ username }) => {
     <>
       <label>
         Role:
-        <input type="text" value={role} onChange={(e) => setRole(e.target.value)} />
+        <input type="text" value={"writer"} onChange={(e) => setRole(e.target.value)} disabled={true}/>
       </label>
       <br />
       <label>
@@ -63,8 +80,8 @@ const UserProfileForm = ({ username }) => {
       <br />
       <div className='buttonSect'>
 
-      <button type="button" onClick={handleSubmit}>Update Profile</button>
-      {username && (
+      <button type="button" onClick={handleCreateSubmit}>Create Profile</button>
+      {user.username && (
         <button type="button" onClick={handleDelete} style={{ marginLeft: '10px', color: 'red' }}>
           Delete Profile
         </button>

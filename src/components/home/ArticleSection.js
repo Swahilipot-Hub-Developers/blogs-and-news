@@ -15,15 +15,23 @@ const ArticleSection = () => {
   const fetchArticles = async (condition) => {
     try {
       let url = 'http://127.0.0.1:8000/articles/published/';
-
+      
       if (condition === 'category') {
         const categoryId = selectedCategory.id;
         url = `http://127.0.0.1:8000/articles/category/${categoryId}`;
       } else if (condition === 'search') {
         url = `http://127.0.0.1:8000/articles/search/?q=${searchTerm}`;
       }
-
+      
       const response = await axios.get(url);
+      setArticles(response.data.articles);
+    } catch (error) {
+      console.error('Error fetching articles:', error.message);
+    }
+  };
+  const fetchPublishedArticles = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/articles/published/');
       setArticles(response.data.articles);
     } catch (error) {
       console.error('Error fetching articles:', error.message);
@@ -48,9 +56,15 @@ const ArticleSection = () => {
   useEffect(() => {
     // Fetch available categories when the component mounts
     fetchData();
+    fetchPublishedArticles()
     fetchArticles(selectedCategory ? 'category' : 'published');
   }, [selectedCategory, searchTerm]);
 
+  const handleAllCategoryClick = () => {
+    setActiveFilter('All');
+    setSelectedCategory(null); // Reset selected category to null
+    fetchPublishedArticles(); // Fetch published articles when 'All' is clicked
+  };
   const handleCategoryClick = (category) => {
     setActiveFilter(category.name)
     setSelectedCategory(category);
@@ -70,7 +84,12 @@ const ArticleSection = () => {
       <div className='categoriesPill'>
         {categoryOptions.map((category) => (
           <PillCard key={category.id} text={category.name} onClick={() => handleCategoryClick(category)} active={activeFilter == category.name} />
-        ))}
+          ))}
+          <PillCard
+            text='All'
+            onClick={handleAllCategoryClick}
+            active={activeFilter === 'All'}
+          />
       </div>
       <Search searchTerm={searchTerm} onSearch={handleSearch} onInputChange={(e) => setSearchTerm(e.target.value)} />
       <div className='articleCardSection'>

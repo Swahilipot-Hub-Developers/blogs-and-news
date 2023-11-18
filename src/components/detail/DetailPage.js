@@ -6,15 +6,12 @@ import { useRouter } from 'next/router';
 const DetailPage = ({ title, disabled }) => {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    user: {
-        username: '',
-        password: '',
-      },
-    role: '',
-    bio: '',
-    confirmPassword: ''
+      username: '',
+      password: '',
+      email:'',
+      confirm_password:''
   });
-
+  // console.log(formData)
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -26,15 +23,21 @@ const DetailPage = ({ title, disabled }) => {
     e.preventDefault();
 
     try {
-       if (formData.user.password !== formData.confirmPassword) {
-        console.error('Passwords do not match');
-        return;
-      }
+      
 
       if (title === 'LOGIN') {
-        await axios.post('http://127.0.0.1:8000/login/', formData);
-        router.push('/dashboard',formData)
+        const response = await axios.post('http://127.0.0.1:8000/login/', formData);
+        if(response.data.message === 'Login successful'){
+          localStorage.setItem('user', JSON.stringify(response.data.user))
+          router.push(`/dashboard/${response.data.user.username}`)
+
+        }
+
       } else if (title === 'SIGN UP') {
+        if (formData.password !== formData.confirm_password) {
+          console.error('Passwords do not match');
+          return;
+        }
         await axios.post('http://127.0.0.1:8000/signup/', formData);
         router.push('/login')
       }
@@ -55,6 +58,19 @@ const DetailPage = ({ title, disabled }) => {
           value={formData.username || ''}
           onChange={handleChange}
         />
+        {!disabled ? (
+          <>
+            <label>Email:</label>
+            <input
+              type='email'
+              name='email'
+              placeholder='Enter your Email address'
+              value={formData.email || ''}
+              onChange={handleChange}
+            />
+          </>
+        ) : ('')}
+        
         <label>Password:</label>
         <input
           type='password'
@@ -63,28 +79,18 @@ const DetailPage = ({ title, disabled }) => {
           value={formData.password || ''}
           onChange={handleChange}
         />
-        {!disabled ? (
+         {!disabled ? (
           <>
-            <label> Confirm Password:</label>
+             <label>Confirm Password:</label>
             <input
               type='password'
-              name='confirmPass'
+              name='confirm_password'
               placeholder='Enter password'
-              value={formData.confirmPass ||''}
-              onChange={handleChange}
-              />
-         
-            <label>Bio:</label>
-            <input
-              type='text'
-              name='bio'
-              placeholder='Enter your bio'
-              value={formData.bio ||''}
+              value={formData.confirm_password || ''}
               onChange={handleChange}
             />
-            </>
-
-        ):('')}
+          </>
+        ) : ('')}
 
         <p>
           Entering your details you consent to{' '}
@@ -102,7 +108,7 @@ const DetailPage = ({ title, disabled }) => {
           ''
         )}
 
-        <button onClick={handleSubmit}>{title}</button>
+        <button type='button' onClick={handleSubmit}>{title}</button>
       </div>
     </div>
   );

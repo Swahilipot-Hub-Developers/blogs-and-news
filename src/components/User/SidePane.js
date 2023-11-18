@@ -7,7 +7,7 @@ const SidePane = ({username}) => {
         <ul>
           <li>
             <Link href="/dashboard/[username]" as={`/dashboard/${username}`}>
-              <a>Update Profile</a>
+              <a>Create Profile</a>
             </Link>
           </li>
           <li>
@@ -15,11 +15,7 @@ const SidePane = ({username}) => {
               <a>Create Article</a>
             </Link>
           </li>
-          <li>
-            <Link href="/dashboard/delete-profile">
-              <a>Delete Profile</a>
-            </Link>
-          </li>
+          
         </ul>
       </nav>
     </div>
