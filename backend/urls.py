@@ -23,12 +23,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
      # User Profile CRUD Paths
     path('create_user_profile/', views.create_user_profile, name='create_user_profile'),
-    path('read_user_profile/<str:username>/', views.read_user_profile, name='read_user_profile'),
-    path('update_user_profile/<str:username>/', views.update_user_profile, name='update_user_profile'),
+    path('read_user_profile/', views.read_user_profile, name='read_user_profile'),
     path('delete_user_profile/<str:username>/', views.delete_user_profile, name='delete_user_profile'),
     path('user_profile_list/', views.user_profile_list, name='user_profile_list'),
 
-     # User registration and login paths (if applicable)
+
+    # User dashboard 
+    path('dashboard/<str:username>/', views.dashboard_data, name='dashboard_data'),
+    # User registration and login paths (if applicable)
     path('signup/', views.signup, name='signup'),
     path('login/', views.login_view, name='login'),
     

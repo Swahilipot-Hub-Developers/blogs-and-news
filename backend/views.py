@@ -1,4 +1,5 @@
 # For this Response import works also for the dashboard View unlike JSONResponse
+from django.http import HttpResponseRedirect
 from rest_framework.response import Response
 from rest_framework import status
 from .models import *
@@ -6,6 +7,7 @@ from .serializers import *
 from rest_framework.decorators import api_view
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
 
@@ -19,20 +21,7 @@ def create_user_profile(request):
             serializer = UserProfileSerializer(data=request.data)
 
             if serializer.is_valid():
-                username = serializer.validated_data['username']
-                role = serializer.validated_data['role']
-                bio = serializer.validated_data['bio']
-
-                user, created = User.objects.get_or_create(username=username)
-                if created:
-                    user.set_password('default_password')
-                    user.save()
-
-                profile, created = UserProfile.objects.get_or_create(user=user)
-                profile.role = role
-                profile.bio = bio
-                profile.save()
-
+                serializer.save() # This triggers the create method in the serializer
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -40,39 +29,18 @@ def create_user_profile(request):
     except Exception as e:
         return Response(f"Error: {str(e)}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-
 @api_view(['GET'])
-def read_user_profile(request, username, format=None):
-    try:
-        user = get_object_or_404(User, username=username)
-        profile = user.userprofile
-        serializer = UserProfileSerializer(profile)  # Serialize the UserProfile object
-        return Response(serializer.data)  # Return the serialized data as a JSON response
-    except User.DoesNotExist:
-        return Response("User not found", status=404)
-    except UserProfile.DoesNotExist:
-        return Response("User profile not found", status=404)
-    except Exception as e:
-        return Response(f"Error: {str(e)}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-@api_view(['PUT'])
-def update_user_profile(request, username):
-    try:
-        user = get_object_or_404(UserProfile, username=username)
-        profile = user.userprofile
+@login_required
+def read_user_profile(request, format=None):
+    if request.user.is_authenticated:
+        authenticated_user = request.user   
+        try:
+           profile = authenticated_user.userprofile 
+           print(profile)
 
-        if request.method == 'PUT':
-            data =request.data
-            print(data)
+        except Exception as e:
+            return Response(f"Error: {str(e)}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-            # if serializer.is_valid():
-            #     serializer.save()
-            #     return Response(serializer.data, status=status.HTTP_200_OK)
-            # else:
-            #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    except Exception as e:
-        return Response(f"Error: {str(e)}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)@api_view(['PUT'])
-    
 
 api_view(['DELETE'])
 def delete_user_profile(request, username):
@@ -103,44 +71,82 @@ def user_profile_list(request):
 
 @api_view(['POST'])
 def signup(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+    password_confirmation = request.data.get('confirm_password')
+    print('Signup Request Data:', request.data) 
+
+    # Check if passwords match
+    if password != password_confirmation:
+        return Response({'error': 'Passwords do not match'}, status=status.HTTP_400_BAD_REQUEST)
     try:
-        print('Signup Request Data:', request.data)
-        # Deserialize user and profile data from the request
-        user_serializer = UserSerializer(data=request.data)
-        profile_serializer = UserProfileSerializer(data=request.data)
-
-        if user_serializer.is_valid() and profile_serializer.is_valid():
-            # Create the user and profile
-            user = user_serializer.save()
-            profile = profile_serializer.save(user=user)
-
-            return Response("User profile created successfully", status=status.HTTP_201_CREATED)
-        else:
-            return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        print('Signup Request Data:', request.data) 
+        user = User.objects.create_user(username=username, password=password)
+        user.save()
+        return Response({"message":"Signup successful"}, status=status.HTTP_201_CREATED)
 
     except Exception as e:
         return Response(f"Error: {str(e)}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 # Login implementation
-@api_view(['POST'])
+@api_view(['GET','POST'])
 def login_view(request):
     try:
-        username = request.data.get('username')
-        password = request.data.get('password')
+        if request.method == 'POST':
+            username = request.data.get('username')
+            password = request.data.get('password')
 
-        user = authenticate(username=username, password=password)
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
 
-        if user is not None:
-            login(request, user)
-            return Response("Login successful", status=status.HTTP_200_OK)
+                user_obj = User.objects.get(username=username)
+                userPoints = {
+                    "username": user_obj.username,
+                    "email": user_obj.email,
+                }
+
+                return Response({"message": "Login successful", "user": userPoints}, status=status.HTTP_200_OK)
+            
+            else:
+                return Response("Invalid username or password", status=status.HTTP_401_UNAUTHORIZED)
+        elif request.method == "GET":
+            if request.accepted_renderer.format == 'js':
+            # Return a rendered HTML page (modify as needed)
+                return render(request, 'index.js')
+            
+            # This has refused to work i am comming back for you!!
+            else:
+            # Return JSON data
+                return Response({"message": "This is the login page"}, status=status.HTTP_200_OK)
+
         else:
-            return Response("Invalid username or password", status=status.HTTP_401_UNAUTHORIZED)
+            return Response("Method Not Allowed", status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
+    except User.DoesNotExist:
+        return Response("User not found", status=status.HTTP_404_NOT_FOUND)
     except Exception as e:
-        return Response(f"Error: {str(e)}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        # Log the error message for debugging purposes
+        print(f"Error in login_view: {str(e)}")
+        return Response("Internal Server Error", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
+# Dashboard
+@login_required
+@api_view(['GET'])
+def dashboard_data(request, username):
+    # Fetch user data based on the username
+    user = get_object_or_404(User, username=username)
+    # print(user)
+    # Prepare the user data to be sent as JSON response
+    user_data = {
+        'username': user.username,
+        'email': user.email,
+        # Include other user-specific data as needed
+    }
+
+    return Response(user_data)
 
 # Article Section
 
@@ -167,7 +173,6 @@ def article_list(request, format=True):
                 content=content,
                 category=category_instance,
                 writer=writer_instance
-                # Add other fields as needed
             )
             return Response({'message': 'Article created successfully'})
         else:
@@ -198,6 +203,7 @@ def article_detail(request,id, format=None ):
         return Response(status=status.HTTP_204_NO_CONTENT)
     #  else:
     #     return Response({'detail': 'Permission denied'}, status=status.HTTP_403_FORBIDDEN)
+
 # Get Article based on filtering the category 
 @api_view(['GET'])
 def articles_by_category(request, category_id, format=None):
@@ -205,12 +211,14 @@ def articles_by_category(request, category_id, format=None):
         category =Category.objects.get(pk=category_id)
     except Article.DoesNotExist:
         return Response(status= status.HTTP_404_NOT_FOUND)
-    articles = Article.objects.filter(category=category)
+    articles = Article.objects.filter(category=category , status='Published')
 
     # serialize the articles 
     serializer = ArticleSerializer(articles, many=True)
 
     return Response({'articles':serializer.data})
+
+    
 # Implement search for articles
 @api_view(['GET'])
 def search_articles(request, format=None):
@@ -219,7 +227,7 @@ def search_articles(request, format=None):
     
     # Perform case-insensitive search
     articles = Article.objects.filter(
-        Q(title__icontains= search_term) | Q(content__icontains=search_term)
+        Q(title__icontains= search_term) | Q(content__icontains=search_term),status='Published'
     )
     serializer = ArticleSerializer(articles, many=True)
 

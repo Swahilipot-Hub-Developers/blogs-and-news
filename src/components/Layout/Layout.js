@@ -1,9 +1,9 @@
 import SidePane from "../User/SidePane";
 
-const Layout = ({ children, username }) => {
+const Layout = ({ children}) => {
     return (
-      <div className="home" style={{display:"flex"}}>
-        <SidePane username={username} />
+      <div className="homePoint" style={{display:"flex"}}>
+        <SidePane  />
         <main className="childrenMain">{children}</main>
       </div>
     );

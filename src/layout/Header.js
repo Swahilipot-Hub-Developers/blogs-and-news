@@ -12,13 +12,13 @@ const Header = () => {
    //  </div>
        <header>
          <div className="logo">
-         <h1 class="logo-text"><span>Swahilipot</span> News and Blogs</h1>
+         <h1 className="logo-text"><span>Swahilipot</span> News and Blogs</h1>
          </div>
-         <i NamclassName="fa fa-bars menu-toggle"></i>
-         <ul className="nav">
+         <i className="fa fa-bars menu-toggle"></i>
+         {/* <ul className="nav">
          <li><a href="/Home">Home</a></li>
          <li><a href="/About">About</a></li>
-         <li><a href="/Department's blogs">Departments blogs</a></li>
+         <li><a href="/Department's blogs">Departments blogs</a></li> */}
          {/* <li><a href="/Sign Up">Sign Up</a></li>
          <li><a href="/Login">Login</a></li> */}
 
@@ -34,7 +34,7 @@ const Header = () => {
                </ul>
                </a>
           </li> */}
-      </ul>
+      {/* </ul> */}
       </header>
   )
 }
