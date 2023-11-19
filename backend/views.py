@@ -118,7 +118,7 @@ def login_view(request):
             
             # This has refused to work i am comming back for you!!
             else:
-            # Return JSON data for non-HTML requests
+            # Return JSON data
                 return Response({"message": "This is the login page"}, status=status.HTTP_200_OK)
 
         else:
@@ -173,7 +173,6 @@ def article_list(request, format=True):
                 content=content,
                 category=category_instance,
                 writer=writer_instance
-                # Add other fields as needed
             )
             return Response({'message': 'Article created successfully'})
         else:
@@ -204,6 +203,7 @@ def article_detail(request,id, format=None ):
         return Response(status=status.HTTP_204_NO_CONTENT)
     #  else:
     #     return Response({'detail': 'Permission denied'}, status=status.HTTP_403_FORBIDDEN)
+
 # Get Article based on filtering the category 
 @api_view(['GET'])
 def articles_by_category(request, category_id, format=None):
@@ -217,6 +217,8 @@ def articles_by_category(request, category_id, format=None):
     serializer = ArticleSerializer(articles, many=True)
 
     return Response({'articles':serializer.data})
+
+    
 # Implement search for articles
 @api_view(['GET'])
 def search_articles(request, format=None):

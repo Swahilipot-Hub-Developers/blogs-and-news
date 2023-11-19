@@ -9,6 +9,8 @@ const getArticleById = async (id) => {
     try {
       const response = await axios.get(`http://127.0.0.1:8000/articles/${id}`);
     //   console.log(response.data)
+      await axios.get(`http://127.0.0.1:8000/articles/${id}/views/`);
+
       return response.data;
 
     } catch (error) {
@@ -20,20 +22,7 @@ const getArticleById = async (id) => {
 const IndividualArticle = ({ article }) => {
   const router = useRouter();
   const { id } = router.query;
-  useEffect(() => {
-    const viewArticle = async () => {
-      try {
-        await axios.get(`http://127.0.0.1:8000/articles/${id}/views/`);
-        console.log('Article viewed successfully.');
-      } catch (error) {
-        console.error('Error viewing article:', error);
-      }
-    };
 
-    if (id) {
-      viewArticle();
-    }
-  }, [id]);
   // Article data is passed as a prop
   return (
     <div className='home'>
