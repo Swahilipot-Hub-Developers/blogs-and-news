@@ -113,13 +113,23 @@ header.menu-toggle{
 .home{
   width: 100%;
   min-height: 440px;
-  background: rgb(59, 59, 59);
+  padding: 20px 0;
+  /* background: rgb(59, 59, 59); */
+  background: linear-gradient(135deg, #5b63667e, #220f0f);
   display: grid;
   justify-content: center;
   align-items: center;
 
 }
-
+/* .homeInner{
+  border: 1px solid red;
+  width: 100vw;
+  height: 100%;
+  background-image: url("/images/technology.jpeg");
+  opacity: 0.5;
+  color: white;
+  text-align: center;
+} */
 .home-text{
   color: white;
   text-align: center;
@@ -145,14 +155,17 @@ a {
   width: 100%;
   min-height: 440px;
   margin: 20px 0;
-  background: rgb(59, 59, 59);
+  /* background: rgb(59, 59, 59); */
   display: grid;
   justify-content: center;
   align-items: center;
 
 }
 .homePoint{
-  /* border: 2px solid red; */
+  /* border: 2px solid blue; */
+  width: 100%;
+  min-height: 440px;
+
 
 }
 @media (prefers-color-scheme: dark) {
@@ -267,6 +280,10 @@ main {
 .topCard h3{
   position: absolute;
   padding: 10px;
+  background:rgba(220, 220, 220, 0.445);
+  /* baopacity: 0.1; */
+  width: 100%;
+  color: black;
 
 }
 .lowerCard p{
@@ -441,23 +458,59 @@ main {
 }
 /* createArticle */
 .createArticle{
-  display: flex;
+  /* display: flex; */
+  /* border: 2px solid red; */
+  text-align: center;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+.createContainer{
+  display: flex;
+}
+.leftCreate{
+  flex: 1;
+  /* border: 2px solid blue; */
+  margin: 0 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+}
+.rightCreate{
+  flex:2;
+  margin: 0 8px;
+  border: 1px solid grey ;
+  /* background: #f7f7f7; */
+  padding: 5px;
+  border-radius: 8px;
+}
 .createArticle  label{
-  font-size: x-large;
+  font-size: large;
   padding: 5px ;
   margin: 5px 0;
   width: 50vh;
+  /* border: 1px solid green ; */
+  text-align: left;
+
 }
 .createArticle  input{
-  border-radius: 5px;
-  height: 3rem;
-  margin: 10px 0;
+  border-radius: 9px;
+  height: 2rem;
+  width: 90%;
+  margin: 10px ;
   text-align: center;
 
+
+}
+.createArticle  select{
+  border-radius: 9px;
+  height: 2rem;
+  width: 90%;
+  margin: 10px ;
+  text-align: center;
+
+  
 }
 .createArticle  .buttonSect{
   /* border: 2px solid red; */
@@ -476,3 +529,15 @@ main {
   margin: 3px;
 }
 /* Footer Section  */
+
+.imgDetails{
+  /* border-bottom: 3px dashed gray; */
+  /* border-radius: 0 0 40% 0; */
+  background-image: url("/images/hero.jpg");
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: #03adf000; */
+  opacity: 0.5;
+}

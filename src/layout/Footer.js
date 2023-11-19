@@ -1,4 +1,6 @@
 import React from 'react'
+import { FaFacebook, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+
 
 const Footer = () => {
     const year = new Date().getFullYear()
@@ -14,33 +16,23 @@ const Footer = () => {
               </div>
               <div className='col-md d-md-flex justify-content-md-end '>
                 {/* Socials */}
-                <ul className='list-inline mb-0'>
-                  <li className='list-inline-item'>
-                    <a
-                      className='btn btn-icon btn-sm btn-ghost-secondary rounded-circle'
-                      href='https://www.facebook.com/Swahilipothub/'
-                      >
-                      <i className='bi-facebook' />
-                    </a>
-                  </li>
-                  <li className='list-inline-item'>
-                    <a
-                      className='btn btn-icon btn-sm btn-ghost-secondary rounded-circle border border-danger'
-                      href='https://twitter.com/swahilipothub'
-                      >
-                      <i className="bi bi-twitter-x"></i>
-                    </a>
-                  </li>
-    
-                  <li className='list-inline-item'>
-                    <a
-                      className='btn btn-icon btn-sm btn-ghost-secondary rounded-circle'
-                      href='https://www.linkedin.com/company/swahilipot-hub'
-                      >
-                      <i className='bi-linkedin' />
-                    </a>
-                  </li>
-                </ul>
+                <ul className="list-inline mb-0">
+                        <li className="list-inline-item">
+                            <a className="btn btn-icon btn-sm btn-ghost-secondary rounded-circle" href="https://www.linkedin.com/company/swahilipot-hub">
+                                <FaLinkedin/>
+                            </a>
+                        </li>
+                        <li className="list-inline-item">
+                            <a className="btn btn-icon btn-sm btn-ghost-secondary rounded-circle" href="https://www.twitter.com/swahilipothub">
+                                <FaXTwitter/>
+                            </a>
+                        </li>
+                        <li className="list-inline-item">
+                            <a className="btn btn-icon btn-sm btn-ghost-secondary rounded-circle" href="https://www.facebook.com/Swahilipothub/">
+                                <FaFacebook/>
+                            </a>
+                        </li>
+                    </ul>
                 {/* End Socials */}
               </div>
             </div>

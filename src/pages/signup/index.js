@@ -3,7 +3,7 @@ import DetailPage from '../../components/detail/DetailPage'
 
 const SignUp = () => {
   return (
-    <div className='homel'>
+    <div className='home'>
         <DetailPage title="SIGN UP" disabled={false} />
     </div>
   )
