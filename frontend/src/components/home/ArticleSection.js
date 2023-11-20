@@ -15,6 +15,7 @@ const ArticleSection = () => {
   const fetchArticles = useCallback( async (condition) => {
     try {
       let url = 'http://127.0.0.1:8000/articles/published/';
+      //point category
       
       if (condition === 'category') {
         const categoryId = selectedCategory.id;
