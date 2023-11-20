@@ -53,7 +53,7 @@ Articles are assigned to specific categories where a filter function is executed
 
 Applicable Article *navigation bar* to scroll within article
 
-Designated == cartegory cards ==
+Designated = cartegory cards =
 
 1.Educational
 2.Entertainment
