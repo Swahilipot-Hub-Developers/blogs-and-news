@@ -44,20 +44,20 @@ Articles are assigned to specific categories where a filter function is executed
 
 ### Creating a writter Account
 
-*writter details
+*writter details*
 
-Add full name.
-Writter role
+1.Add full name.
+2.Writter role
 
 ### managing Article
 
 Applicable Article *navigation bar* to scroll within article
 
-Designated==cartegory cards==
+Designated == cartegory cards ==
 
--Educational
--Entertainment
--Fashion
+1.Educational
+2.Entertainment
+3.Fashion
 
 By the **search** key filterd card categories are retrieved.
 
@@ -68,5 +68,5 @@ By the **search** key filterd card categories are retrieved.
 Insert category *name* then *save*
 Designated key to *update* and *delete* next to category *name*
 Publishing authorization is granted by **Administrator**
-Where if *Granted* ```bash Blog #or News saved to Database```.
+Where if *Granted* ```Blog or News saved to Database```.
 
