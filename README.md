@@ -33,3 +33,40 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## SUMMARY
+Exploring the interest of Arts , Heritage and Technology where the blog and news page serves as vibrant hub delving into the fusion of artistic expression, cultural, heritage and technological innovation.
+From immersive digital art experiences presrving cultural heritage to the latest advancement revolutiniizng creative industries, we curate engaging content bridging the gap between traditional and innovation.
+
+## user
+### Article viewing
+Articles are assigned to specific categories where a filter function is executed when searching for a specific cartegory, where they are view at the home screen page.
+
+### Creating a writter Account
+
+*writter details
+
+Add full name.
+Writter role
+
+### managing Article
+
+Applicable Article *navigation bar* to scroll within article
+
+Designated==cartegory cards==
+
+-Educational
+-Entertainment
+-Fashion
+
+By the **search** key filterd card categories are retrieved.
+
+**update**, **creating**, and **deleting** Blog-And-News file at *Dashboard*
+
+### creating category file
+
+Insert category *name* then *save*
+Designated key to *update* and *delete* next to category *name*
+Publishing authorization is granted by **Administrator**
+Where if *Granted* ```bash Blog #or News saved to Database```.
+
