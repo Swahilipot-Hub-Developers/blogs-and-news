@@ -1,10 +1,14 @@
 // pages/CreateArticle.js
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Layout from '../../components/Layout/Layout';
-import ReactQuill from 'react-quill';
+import dynamic from 'next/dynamic'
+// import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Import Quill styles
+
+
+const ReactQuill = dynamic(() => import("react-quill"), {ssr: false});
 
 const CreateArticle = ({username}) => {
   const [title, setTitle] = useState('');
@@ -15,7 +19,7 @@ const CreateArticle = ({username}) => {
   const [selectedWriter, setSelectedWriter] = useState(0);
 
 
-  const quillRef = useRef(null);
+  // const quillRef = useRef(null);
   
   useEffect(() => {
   
@@ -124,7 +128,6 @@ const CreateArticle = ({username}) => {
         <div className='rightCreate'>
           {/* Your content */}
           <ReactQuill
-            ref={quillRef}
             value={content}
             theme="snow" // You can use 'bubble' or 'snow' theme
             style={{
