@@ -59,7 +59,7 @@ const ArticleSection = () => {
     fetchData();
     fetchPublishedArticles()
     fetchArticles(selectedCategory ? 'category' : 'published');
-  }, [selectedCategory, searchTerm,fetchArticles]);
+  }, [selectedCategory, searchTerm]);
 
   const handleAllCategoryClick = () => {
     setActiveFilter('All');
