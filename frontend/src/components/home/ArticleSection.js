@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PillCard from '../Cards/PillCard';
 import ArticleCard from '../Cards/ArticleCard';
 import Search from './Search';
@@ -12,9 +12,10 @@ const ArticleSection = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeFilter, setActiveFilter] = useState('All')
 
-  const fetchArticles = async (condition) => {
+  const fetchArticles = useCallback( async (condition) => {
     try {
       let url = 'http://127.0.0.1:8000/articles/published/';
+      //point category
       
       if (condition === 'category') {
         const categoryId = selectedCategory.id;
@@ -28,7 +29,7 @@ const ArticleSection = () => {
     } catch (error) {
       console.error('Error fetching articles:', error.message);
     }
-  };
+  },[]);
   const fetchPublishedArticles = async () => {
     try {
       const response = await axios.get('http://127.0.0.1:8000/articles/published/');

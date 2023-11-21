@@ -8,6 +8,10 @@ const ArticleCard = ({...article}) => {
   return (
     <div className='gridCard' style={{overflow:"scroll"}}>
         <div className='topCard'>
+
+          {/* image */}
+        <Image src='images/hero.jpg' alt='swahilipot' style={{ width: '230px' }} />
+        <h3>{title}</h3>
             <img src='images/hero.jpg' alt='swahilipot' />
             <h3>{title}</h3>
         </div>
