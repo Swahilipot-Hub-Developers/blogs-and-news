@@ -16,12 +16,8 @@ const CreateArticle = ({username}) => {
 
 
   const quillRef = useRef(null);
-  // console.log(content)
-  // console.log(writerOptions)
-  // console.log(categoryOptions)
+  
   useEffect(() => {
-
-   // Simulating the behavior of wysihtml5 initialization
   
     // Fetch available categories and writers when the component mounts
     const fetchData = async () => {
@@ -68,19 +64,16 @@ const CreateArticle = ({username}) => {
       // Play test selected writer to 2
       // Include other fields as needed
     }
-    // console.log(dataTake)
 
     try {
       const response = await axios.post('http://127.0.0.1:8000/articles/',dataTake);
       console.log('Article created successfully:', response.data);
       setTitle('')
       setContent('')
-4
 
       // Handle success, redirect, or perform other actions
     } catch (error) {
       console.error('Failed to create article:', error.message);
-      // Handle error
     }
   };
   const handleEditorChange = (content, delta, source, editor) => {

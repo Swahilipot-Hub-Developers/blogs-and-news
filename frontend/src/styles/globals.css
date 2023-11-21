@@ -273,9 +273,12 @@ main {
   align-items: flex-start;
   
 }
-.topCard img{
+.backfill{
   width: 230px;
+  height: 150px;
   object-fit: cover;
+  background: url('/images/hero.jpg');
+  background-size: cover;
 }
 .topCard h3{
   position: absolute;
