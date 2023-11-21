@@ -36,7 +36,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## SUMMARY
 Exploring the interest of Arts , Heritage and Technology where the blog and news page serves as vibrant hub delving into the fusion of artistic expression, cultural, heritage and technological innovation.
-From immersive digital art experiences presrving cultural heritage to the latest advancement revolutiniizng creative industries, we curate engaging content bridging the gap between traditional and innovation.[Redirectory](https://docs.google.com/presentation/d/1eWHWL6Akn9R475ZpZybEgtfNvyaUNczk3dOsYj0YUHQ/edit?usp=sharing)
+From immersive digital art experiences presrving cultural heritage to the latest advancement revolutiniizng creative industries, we curate engaging content bridging the gap between traditional and innovation.    [Redirectory](https://docs.google.com/presentation/d/1eWHWL6Akn9R475ZpZybEgtfNvyaUNczk3dOsYj0YUHQ/edit?usp=sharing)
 
 ## user
 ### Article viewing
