@@ -12,16 +12,17 @@ const ArticleSection = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeFilter, setActiveFilter] = useState('All')
 
+    const baseUrl = "https://jerryj.pythonanywhere.com"
   const fetchArticles = useCallback( async (condition) => {
     try {
-      let url = 'http://127.0.0.1:8000/articles/published/';
+      let url = `${baseUrl}/articles/published/`;
       //point category
       
       if (condition === 'category') {
         const categoryId = selectedCategory.id;
-        url = `http://127.0.0.1:8000/articles/category/${categoryId}`;
+        url = `${baseUrl}/articles/category/${categoryId}`;
       } else if (condition === 'search') {
-        url = `http://127.0.0.1:8000/articles/search/?q=${searchTerm}`;
+        url = `${baseUrl}/articles/search/?q=${searchTerm}`;
       }
       
       const response = await axios.get(url);
@@ -32,7 +33,7 @@ const ArticleSection = () => {
   },[searchTerm,selectedCategory]);
   const fetchPublishedArticles = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/articles/published/');
+      const response = await axios.get(`${baseUrl}/articles/published/`);
       setArticles(response.data.articles);
     } catch (error) {
       console.error('Error fetching articles:', error.message);
@@ -41,7 +42,7 @@ const ArticleSection = () => {
 
   const fetchData = async () => {
     try {
-      const categoryResponse = await axios.get('http://127.0.0.1:8000/categories/');
+      const categoryResponse = await axios.get(`${baseUrl}/categories/`);
       const fetchedCategories = categoryResponse.data.categories;
 
       if (Array.isArray(fetchedCategories)) {

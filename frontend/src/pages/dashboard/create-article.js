@@ -18,7 +18,7 @@ const CreateArticle = ({username}) => {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [selectedWriter, setSelectedWriter] = useState(0);
 
-
+  const baseUrl = "https://jerryj.pythonanywhere.com"
   // const quillRef = useRef(null);
   
   useEffect(() => {
@@ -26,7 +26,7 @@ const CreateArticle = ({username}) => {
     // Fetch available categories and writers when the component mounts
     const fetchData = async () => {
       try {
-        const categoryResponse = await axios.get('http://127.0.0.1:8000/categories/');
+        const categoryResponse = await axios.get(`${baseUrl}/categories/`);
 
         const fetchedCategories = categoryResponse.data.categories;
 
@@ -37,7 +37,7 @@ const CreateArticle = ({username}) => {
           console.error('Invalid data structure for categories:', fetchedCategories);
         }
 
-        const writerResponse = await axios.get('http://127.0.0.1:8000/writers/');
+        const writerResponse = await axios.get(`${baseUrl}/writers/`);
         const fetchedWriters = writerResponse.data;
 
         // Ensure fetchedWriters is an array before setting it
@@ -70,7 +70,7 @@ const CreateArticle = ({username}) => {
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/articles/',dataTake);
+      const response = await axios.post(`${baseUrl}/articles/`,dataTake);
       console.log('Article created successfully:', response.data);
       setTitle('')
       setContent('')
