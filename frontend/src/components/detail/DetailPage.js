@@ -4,8 +4,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
+
+
 const DetailPage = ({ title, disabled }) => {
   const imgUrl ="/public/images/technology.jpeg"
+  const baseUrl = "https://jerryj.pythonanywhere.com"
 
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -29,7 +32,7 @@ const DetailPage = ({ title, disabled }) => {
       
 
       if (title === 'LOGIN') {
-        const response = await axios.post('http://127.0.0.1:8000/login/', formData);
+        const response = await axios.post(`${baseUrl}/login/`, formData);
         if(response.data.message === 'Login successful'){
           localStorage.setItem('user', JSON.stringify(response.data.user))
           router.push(`/dashboard/${response.data.user.username}`)
@@ -41,7 +44,7 @@ const DetailPage = ({ title, disabled }) => {
           console.error('Passwords do not match');
           return;
         }
-        await axios.post('http://127.0.0.1:8000/signup/', formData);
+        await axios.post(`${baseUrl}/signup/`, formData);
         router.push('/login')
       }
     } catch (error) {
@@ -49,6 +52,7 @@ const DetailPage = ({ title, disabled }) => {
     }
   };
 
+  
   return (
 
       <section className="ftco-section">
@@ -81,7 +85,7 @@ const DetailPage = ({ title, disabled }) => {
                 </div>
               
                   <div className="form-group mb-3">
-                    <label className="label" for="name">Username</label>
+                    <label className="label" htmlFor="name">Username</label>
                     <input type="text" className="form-control" placeholder="Username"
                       value={formData.username || ''}
                       name='username'
@@ -92,7 +96,7 @@ const DetailPage = ({ title, disabled }) => {
                   <div className="form-group mb-3">
                   {!disabled ? (
                     <>
-                      <label className='label' for="email">Email:</label>
+                      <label className='label' htmlFor="email">Email:</label>
                       <input
                         type='email'
                         name='email'
@@ -105,7 +109,7 @@ const DetailPage = ({ title, disabled }) => {
                   ) : ('')}
                   </div>
                   <div className="form-group mb-3">
-                    <label className="label" for="password">Password</label>
+                    <label className="label" htmlfor="password">Password</label>
                     <input type="password"name='password' className="form-control" 
                       placeholder="Password" 
                       value={formData.password || ''}

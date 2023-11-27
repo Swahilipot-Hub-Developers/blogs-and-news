@@ -9,7 +9,7 @@ import { FaFacebook, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 
 const getArticleById = async (id) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/articles/${id}`);
+      const response = await axios.get(`https://jerryj.pythonanywhere.com/articles/${id}`);
     //   console.log(response.data)
       // await axios.get(`http://127.0.0.1:8000/articles/${id}/views/`);
 

@@ -19,11 +19,14 @@ const ArticleCard = ({...article}) => {
 
             {/* <Image src='images/hero.jpg' alt='swahilipot' style={{ width: '230px',height:'120px' }} /> */}
 
-            <h3>{title}</h3>
+            {/* <h3>{title}</h3> */}
         </div>
         <div className='lowerCard'>
-              <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />    
-                <Link href={`/articles/${article.id}`}>
+            <p className='textP'>
+
+              <p  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
+            </p>
+              <Link href={`/articles/${article.id}`}>
                 <button>READ MORE</button>
             </Link>
         </div>
