@@ -22,7 +22,10 @@ const ArticleCard = ({...article}) => {
             {/* <h3>{title}</h3> */}
         </div>
         <div className='lowerCard'>
+            <p className='textP'>
+
               <p  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }} />
+            </p>
               <Link href={`/articles/${article.id}`}>
                 <button>READ MORE</button>
             </Link>
