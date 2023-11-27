@@ -111,14 +111,21 @@ header.menu-toggle{
 }
 
 .home{
-  width: 100%;
-  min-height: 440px;
-  padding: 20px 0;
+width: 100%;
+  min-height: 100vh;
+  height: 100vh;
+  padding: 50px 0;
   /* background: rgb(59, 59, 59); */
-  background: linear-gradient(135deg, #5b63667e, #220f0f);
+  /* background: linear-gradient(135deg, #5b63667e, #220f0f); */
   display: grid;
   justify-content: center;
   align-items: center;
+  background-image:url('../../public/images/img3.jpeg') ;
+  background-repeat: no-repeat;
+  background-size:cover ;
+  background-attachment: fixed;
+  box-sizing: border-box;
+  
 
 }
 /* .homeInner{
@@ -131,15 +138,17 @@ header.menu-toggle{
   text-align: center;
 } */
 .home-text{
-  color: white;
+  color:whitesmoke;
   text-align: center;
 }
 .home-title{
   font-size: 3.5rem;
+  font-weight: 600;
 }
 .home-subtitle{
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: orangered;
 }
 .post-box{
   background-image: url("../../public/images/technology.jpeg")
